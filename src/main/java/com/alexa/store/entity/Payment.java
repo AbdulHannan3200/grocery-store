@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "payments") // Corrected table name to plural "payments"
+@Table(name = "payments")
 public class Payment {
 
     @Id
@@ -22,9 +22,9 @@ public class Payment {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "order_id", unique = true) // Important: unique = true for OneToOne
-    @JsonBackReference(value = "orderPayment") // Add this, matching Order.payment's @JsonManagedReference
-    private Order order;
+    @JoinColumn(name = "order_id", unique = true)
+    @JsonBackReference(value = "orderPayment")
+    private Order order; // The name should be "order" to be consistent with the @JoinColumn
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_method" , nullable = false)

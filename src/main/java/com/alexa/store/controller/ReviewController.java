@@ -1,6 +1,7 @@
 package com.alexa.store.controller;
 
-import com.alexa.store.dto.ReviewDto;
+import com.alexa.store.dto.ReviewRequestDto;
+import com.alexa.store.dto.ReviewResponseDTO;
 import com.alexa.store.entity.Review;
 import com.alexa.store.service.ReviewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,30 +16,20 @@ public class ReviewController {
     @Autowired
     private ReviewsService reviewsService;
 
-    @PostMapping
-    public ResponseEntity<Review> createReview(@RequestBody ReviewDto reviewDto) { // Use the DTO
-        Review review = reviewsService.createReview(reviewDto); // Service handles conversion
-        return ResponseEntity.ok(review); // Or return a ReviewResponseDto if you have one
+    @PostMapping("/add-review")
+    public Review addReview(@RequestBody ReviewRequestDto reviewRequestDto){
+        return reviewsService.createReview(reviewRequestDto);
     }
-    @PostMapping("/add_review")
-    public Review addReview(@RequestBody ReviewDto reviewDto){
-        return reviewsService.createReview(reviewDto);
+    @GetMapping("/reviews-list")
+    public ResponseEntity<List<ReviewResponseDTO>> getAll(){
+        List<ReviewResponseDTO> reviews = reviewsService.getAll();
+        return ResponseEntity.ok(reviews);
     }
-//    // Get reviews for a product
-//    @GetMapping("/product/{productId}")
-//    public List<Review> getReviewsByProduct(@PathVariable int productId) {
-//        return reviewsService.getReviewsByProduct(productId);
-//    }
-//
-//    // Get reviews by a user
-//    @GetMapping("/user/{userId}")
-//    public List<Review> getReviewsByUser(@PathVariable int userId) {
-//        return reviewsService.getReviewsByUser(userId);
-//    }
-//
-//    // Add a review
-//    @PostMapping
-//    public Review addReview(@RequestBody Review review) {
-//        return reviewsService.addReview(review);
-//    }
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<List<ReviewResponseDTO>> getByProduct(@PathVariable int productId) {
+        List<ReviewResponseDTO> reviews = reviewsService.getReviewsByProduct(productId);
+        return ResponseEntity.ok(reviews);
+    }
+
 }

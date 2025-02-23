@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/all-orders")
     public ResponseEntity<List<OrderDTO>> getAllOrders() {
         List<OrderDTO> orders = orderService.getAllOrders(); // Returns List<OrderDTO>
         return new ResponseEntity<>(orders, HttpStatus.OK);

@@ -17,8 +17,9 @@ import java.time.LocalDateTime;
 // DTO for Order Responses (what the server sends back)
 public class OrderDTO {  // Renamed to OrderDTO for response
     private Long orderId;
-    private UserDto user; // Use UserDto
-    private ProductDTO product; // Use ProductDTO
+    private String userName;
+    private String userEmail;
+    private String productName; // Use ProductDTO
     private int quantity;
     private BigDecimal price;
     private LocalDateTime orderDate;

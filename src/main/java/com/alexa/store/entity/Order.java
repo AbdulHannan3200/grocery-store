@@ -45,8 +45,8 @@ public class Order {
     @Column(name = "status")
     private OrderStatus orderStatus;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "orderPayment") // Add @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "order") // mappedBy = "order" from Payment Entity
+    @JsonManagedReference(value = "orderPayment")
     private Payment payment;
 
     @PrePersist

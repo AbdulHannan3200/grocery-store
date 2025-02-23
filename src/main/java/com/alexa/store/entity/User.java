@@ -2,7 +2,8 @@ package com.alexa.store.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-        import lombok.AllArgsConstructor;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,5 +50,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "userOrders")
     private List<Order> orders;
+
+
+    public String getName(){
+        return firstName+" "+lastName;
+    }
 
 }

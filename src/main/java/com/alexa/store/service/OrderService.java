@@ -60,32 +60,12 @@ public class OrderService {
     }
 
 
-    private UserDto convertToUserDto(User user) {
-//        logger.info("Converting User to DTO: User ID = {}, Email = {}", user.getId(), user.getEmail()); // Log email
-        UserDto userDto = new UserDto();
-        userDto.setUserId(user.getId());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastname(user.getLastName());
-        userDto.setEmail(user.getEmail()); // Make sure to set the email if you want it in the DTO
-        return userDto;
-    }
-
-    private ProductDTO convertToProductDto(Product product) {
-//        logger.info("Converting Product to DTO: Product ID = {}, Description = {}, Price = {}",
-//                product.getId(), product.getDescription(), product.getPrice()); // Log description and price
-        ProductDTO productDto = new ProductDTO();
-        productDto.setProductId(product.getId());
-        productDto.setName(product.getName());
-        productDto.setDescription(product.getDescription()); // Set description
-        productDto.setPrice(product.getPrice()); // Set price
-        return productDto;
-    }
-
     private OrderDTO convertToOrderDto(Order order) {
         OrderDTO orderDto = new OrderDTO();
         orderDto.setOrderId(order.getOrderId());
-        orderDto.setUser(convertToUserDto(order.getUser())); // Convert User to UserDto
-        orderDto.setProduct(convertToProductDto(order.getProduct())); // Convert Product to ProductDTO
+        orderDto.setUserName(order.getUser().getName());
+        orderDto.setUserEmail(order.getUser().getEmail());
+        orderDto.setProductName(order.getProduct().getName());
         orderDto.setQuantity(order.getQuantity());
         orderDto.setPrice(order.getPrice());
         orderDto.setOrderDate(order.getOrderDate());

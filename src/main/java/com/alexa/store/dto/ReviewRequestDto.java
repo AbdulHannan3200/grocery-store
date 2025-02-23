@@ -1,6 +1,9 @@
 package com.alexa.store.dto;
 
-public class ReviewDto {
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public class ReviewRequestDto {
     private int userId; // Just the ID
     private int productId; // Just the ID
     private int rating;
@@ -8,7 +11,7 @@ public class ReviewDto {
 
     // ... getters and setters
 
-    public ReviewDto(int userId, int productId, int rating, String comment) {
+    public ReviewRequestDto(int userId, int productId, int rating, String comment) {
         this.userId = userId;
         this.productId = productId;
         this.rating = rating;
